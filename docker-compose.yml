@@ -27,19 +27,8 @@ services:
       - chrome
       - firefox
     environment:
-      - BROWSER=chrome
+      - BROWSER=firefox
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
       - ./search-result:/usr/share/selenium-docker/test-output
-  book-flight-module:
-    image: pkalita/selenium-docker
-    depends_on:
-      - chrome
-      - firefox
-    environment:
-      - BROWSER=chrome
-      - HUB_HOST=hub
-      - MODULE=book-flight-module.xml
-    volumes:
-      - ./bookflight-result:/usr/share/selenium-docker/test-output
