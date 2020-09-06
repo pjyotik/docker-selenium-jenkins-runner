@@ -10,8 +10,6 @@ services:
       - hub
     environment:
       - HUB_HOST=hub
-    volumes:
-      - ./downloads:/home/seluser/Downloads
   firefox:
     image: selenium/node-firefox:3.141.59
     shm_size: '1gb'
@@ -19,8 +17,6 @@ services:
       - hub
     environment:
       - HUB_HOST=hub
-    volumes:
-      - ./downloads:/home/seluser/Downloads
   search-module:
     image: pkalita/selenium-docker
     depends_on:
@@ -31,4 +27,15 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./search-result:/usr/share/selenium-docker/test-output
+      - ./output/search-result:/usr/share/selenium-docker/test-output
+  book-flight-module:
+    image: pkalita/selenium-docker
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - HUB_HOST=hub
+      - BROWSER=chrome
+      - MODULE=book-flight-module.xml
+    volumes:
+      - ./output/book-result:/usr/share/selenium-docker/test-output
